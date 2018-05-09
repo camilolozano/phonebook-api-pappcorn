@@ -5,7 +5,11 @@ const router = express.Router();
 
 // get all contacts
 router.get('/', async (req, res) => {
-  contacts.findAll().then(contacts => {
+  contacts.findAll({
+    where: {
+      state: true
+    }
+  }).then(contacts => {
     res.json({
       contacts
     });
@@ -19,6 +23,8 @@ router.get('/:id', async (req, res) => {
       idContact: req.params.id
     }
   }).then(contact => {
+    console.log('------------');
+    console.log(contact);
     res.json({
       contact
     });
@@ -65,6 +71,28 @@ router.post('/', async (req, res) => {
   }).catch((err) => {
     console.log(err);
   });
+});
+
+// remove contact
+router.put('/remove', async (req, res) => {
+  const attributes = req.body;
+  console.log(attributes);
+  contacts.findOne({
+    where: {
+      idContact: attributes.id
+    }
+  }).then((contact) => {
+    return contact.updateAttributes({
+      state: false
+    });
+  })
+  .then(() => {
+    res.json({
+      success: true,
+      msg: 'Successful remove'
+    });
+  })
+  .catch(err => console.log(err));
 });
 
 module.exports = router;
