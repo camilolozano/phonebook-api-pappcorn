@@ -1,7 +1,6 @@
 import app from './app';
 import debug from 'debug';
 import models from './models';
-import sockets from './sockets/realtime';
 
 debug('scaffolding-api:server');
 /**
@@ -16,7 +15,6 @@ const port = normalizePort(process.env.PORT || '8000');
  */
 
 const server = app.listen(port);
-sockets(server);
 
 models.sequelize.sync().then(() => {
   /**
