@@ -2,7 +2,7 @@ import app from './app';
 import debug from 'debug';
 import models from './models';
 
-debug('scaffolding-api:server');
+debug('phonebook-backend:server');
 /**
  * Get port from environment and store in Express.
  */
