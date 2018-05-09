@@ -1,0 +1,123 @@
+Creación de usuarios
+
+url: http://localhost:8000/create-user-app/create
+metodo: POST
+
+BODY:
+{
+	"firstNameUser": "Kamilo Camilo",
+	"lastNameUser": "Arteaga",
+	"addressUser": "Calle falsa 123",
+	"contactUser": "720202",
+	"emailUsername": "kamilo92@live.com",
+  "password": "asdasdas"
+}
+
+RESPONSE:
+  true
+{
+    "success": true,
+    "msg": ""
+}
+  false
+{
+  "success": false,
+  "msg": ""
+}
+
+//------------------------
+
+Validación de existencias de correo electrónico
+
+url: http://localhost:8000/create-user-app/validate-email/:email
+metodo: GET
+
+ejemplo http://localhost:8000/create-user-app/validate-email/kamilo92@live.com
+
+RESPONSE:
+  true
+{
+    "success": true,
+    "msg": "El correo ya fue registrado"
+}
+  false
+{
+  "success": false,
+  "msg": "El correo no ha sido registrado"
+}
+
+//------------------------
+
+Login app mobil
+
+url: http://localhost:8000/app-login
+metodo: POST
+
+BODY:
+  {
+    "email": "aajsj@ejej.ck",
+    "password": "123456"
+  }
+
+RESPONSE
+  true
+  {
+      "success": true,
+      "idSystemUser": "17",
+      "fullName": "Kamilo Camilo Arteaga",
+      "DBemail": "kamilo92@live.com",
+      "DBaddress": "asadas",
+      "msg": "login"
+  }
+  false
+  {
+    "msg": "El usaurio no está registrado",
+    "success": false,
+    "flag": "NONemail"
+  }
+
+// -------------------------
+
+Busqueda por key (Llave)
+
+url: http://localhost:8000/search-companies/1&:key
+ejemplo: http://localhost:8000/search-companies/1&pan
+
+metodo: GET
+
+RESPONSE
+  true ('Si no regresa información')
+  {
+      "success": true,
+      "flag": "NON"
+  }
+  true ('Regresa información')
+  {
+    "success": true,
+    "flag": "YES",
+    "data": [
+        {
+            "nameBusiness": "Panaderia La Espiga"
+        },
+        {
+            "nameBusiness": "Panaderia la 24"
+        },
+        {
+            "nameBusiness": "Panaderia San Juan"
+        },
+        {
+            "nameBusiness": "Pananderia Valladolid"
+        },
+        {
+            "nameBusiness": "Panaderia RikiPan"
+        }
+    ]
+  }
+  false
+  {
+    "msg": "El usaurio no está registrado",
+    "success": false,
+    "flag": "NONemail"
+  }
+
+
